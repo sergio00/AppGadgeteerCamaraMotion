@@ -158,7 +158,6 @@ namespace GadgeteerAppMotionDetect
                         //mensaje de alerta
                         Debug.Print("Motion");
                         Glide.MainWindow = intruso;
-                        //Thread.Sleep(1000);
                        
                             timer.Start();
                         

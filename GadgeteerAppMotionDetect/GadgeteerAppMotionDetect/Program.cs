@@ -13,7 +13,10 @@ using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 using Gadgeteer.Modules.GHIElectronics;
 
-
+//Estas referencias son necesarias para usar GLIDE
+using GHI.Glide;
+using GHI.Glide.Display;
+using GHI.Glide.UI;
 
 
 namespace GadgeteerAppMotionDetect
@@ -32,6 +35,7 @@ namespace GadgeteerAppMotionDetect
         ArrayList lastColores = new ArrayList();
         static Bitmap currentBitmap, previousBitmap;
         Boolean block = false;
+        private GHI.Glide.Display.Window iniciarWindow,intruso,peligro;
         
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
@@ -44,8 +48,10 @@ namespace GadgeteerAppMotionDetect
             //Carga la ventana principal
             mBitmap = new Bitmap(camera.CurrentPictureResolution.Width, camera.CurrentPictureResolution.Height); //initialize buffer to camera view size
             camera.BitmapStreamed += camera_BitmapStreamed;
-            
-
+            iniciarWindow = GlideLoader.LoadWindow(Resources.GetString(Resources.StringResources.WelcomeMessage));
+            intruso = GlideLoader.LoadWindow(Resources.GetString(Resources.StringResources.Intruso));
+           
+            Glide.MainWindow = iniciarWindow;
             startService();
             ethernetJ11D.NetworkDown += ethernetJ11D_NetworkDown;
             ethernetJ11D.NetworkUp += ethernetJ11D_NetworkUp;
@@ -151,8 +157,11 @@ namespace GadgeteerAppMotionDetect
                     {
                         //mensaje de alerta
                         Debug.Print("Motion");
-                        
+                        Glide.MainWindow = intruso;
+                        //Thread.Sleep(1000);
+                       
                             timer.Start();
+                        
                        
                         //alerta = "MotionDetect";
                         block = false;

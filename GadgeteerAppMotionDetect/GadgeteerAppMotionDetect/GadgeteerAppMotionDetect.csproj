@@ -63,6 +63,7 @@
     <Reference Include="Gadgeteer.WebServer, Version=2.43.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="GHI.Glide, Version=4.3.7.10, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHI.Hardware, Version=4.3.7.10, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
